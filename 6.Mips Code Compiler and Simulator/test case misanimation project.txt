@@ -1,0 +1,22 @@
+Test case :
+
+j main
+sum : slti $t1 $a0 2
+addi $t5 $0 1
+beq  $t1 $t5 exit
+addi $sp $sp -4
+sw   $ra 0($sp)
+addi $sp $sp -4
+sw   $a0 0($sp)
+addi $a0 $a0 -1
+jal  sum
+lw   $a0 0($sp)
+addi $sp $sp 4
+jr   $ra
+exit : addi $v0 $0 1
+jr   $ra
+main : addi $a0 $0 5
+jal sum
+addi $a0 $v0 0
+
+The final values in the registers that changed $a0 = 15 , $v0 = 15.
